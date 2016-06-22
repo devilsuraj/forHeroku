@@ -1,12 +1,17 @@
 {
-  "name": "asp.net",
+  "name": "angular2-quickstart",
   "version": "1.0.0",
+  "scripts": {
+    "start": "npm run lite ",
+    "lite": "lite-server"
+  },
+  "license": "ISC",
   "dependencies": {
-    "angular2-materialize": "^3.0.0",
-    "dropzone": "^4.3.0",
-    "materialize-css": "^0.97.6"
+  
   },
   "devDependencies": {
-
+ 
+    "lite-server": "^2.2.0"
+  
   }
 }
