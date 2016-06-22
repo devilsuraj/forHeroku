@@ -2,7 +2,9 @@
   "name": "asp.net",
   "version": "1.0.0",
   "dependencies": {
-  
+    "angular2-materialize": "^3.0.0",
+    "dropzone": "^4.3.0",
+    "materialize-css": "^0.97.6"
   },
   "devDependencies": {
 
