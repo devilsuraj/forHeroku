@@ -1,0 +1,129 @@
+
+
+<div class="row">
+        <div class="col s4" style="text-align:justify">
+            <h5>Hey there trying to add your new product, better read this instructions to get more responses </h5>
+            <h6>Upload nice images of your product or describing the service</h6>
+            <h6>Describe your product and its condition</h6>
+            <h6>Tell everyone what you expect in return so you can get relevant offers from other users</h6>
+            <h6>Select location of your product</h6>
+        </div>
+    
+        <div class="loader" [hidden]="!isloading" style="text-align:center; padding-top:100px" >
+            <div class="preloader-wrapper small active">
+                <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s7" [hidden]="isloading">
+            <h4>Post your Product Or Service</h4>
+            <form materialize *ngIf="active" (ngSubmit)="editHero()" #f="ngForm" >
+                <drop></drop>
+             
+                <div class="input-field">
+               
+                    <input type="hidden" class="validate"
+                            [(ngModel)]="model.New" pattern="^[1-9][0-9]*$"
+                           name="New" ngControl="New" #New="ngForm"
+                           required aria-required="true" [value]="model.New">
+                    <div [hidden]="New.valid || New.pristine" class="error">
+                        Please upload atleast one image
+                    </div>
+                </div>
+               
+                <div class="input-field">
+                    <input type="text" class="validate" materialize="characterCounter"
+                           [(ngModel)]="model.ProductName" [attr.pid]="model.Id" 
+                            name="ProductName" id="pname"    ngControl="ProductName"  #ProductName="ngForm" 
+                           required aria-required="true" length="50">
+                    <label [class.active]="isDelightful" for="ProductName" data-error="" data-success="">Product Name</label>
+                    <div [hidden]="ProductName.valid || ProductName.pristine" class="error">
+                        Enter Name of your Product/Service
+                    </div>
+                </div>
+
+
+                <div class="input-field">
+                    <textarea class="materialize-textarea validate" required aria-required="true"materialize="characterCounter"
+                              [(ngModel)]="model.ProductDescription" name="ProductDescription" length="150"
+                              ngControl="ProductDescription"  #ProductDescription="ngForm"></textarea>
+                    <label [class.active]="isDelightful" for="ProductDescription" data-error="Enter Description Of your Product/Service" data-success="">Product Description</label>
+                    <div [hidden]="ProductDescription.valid || ProductDescription.pristine" class="error">
+                        Enter Description of your Product/Service
+                    </div>
+                </div>
+            
+                <div class="input-field">
+                    <input type="text" class="form-control" (focus)="tryier()"
+                           [(ngModel)]="model.location"
+                           id="location"
+                           [attr.state]="street.state"
+                           [attr.country]="street.country" ngControl="location"  #location="ngForm" 
+                           [attr.city]="street.city"
+                           [value]="street.city" required aria-required="true" name="location" />
+                    <label [class.active]="isDelightful" for="location"  data-error="Enter Location Of your Product/Service" class="active" data-success="">Location </label>
+                    <div [hidden]="location.valid || location.pristine" class="error">
+                        Enter location of your Product/Service
+                    </div>
+                </div>
+                <div class="input-field">
+                    <select class="browser-default" required
+                            [(ngModel)]="model.cat" name="cat" title="Select Category"
+                           >
+                        <option selected disabled>Choose one</option>
+                        <option *ngFor="let p of heroes"  [value]="p.id">{{p.CategoryTitle}}</option>
+                    </select>
+                </div>
+
+                <div class="input-field">
+                    <input type="number" class="validate" name="Price"
+                           [(ngModel)]="model.price" ngControl="price" required length="9"  #price="ngForm" materialize="characterCounter"
+                           aria-required="true">
+                    <label [class.active]="isDelightful" for="price" data-error="Enter approximate price" data-success="">Price</label>
+                    <div [hidden]="price.valid || price.pristine" class="error">
+                        Enter approximate price
+                    </div>
+                </div>
+
+
+
+
+                <div class="input-field">
+                    <textarea class="materialize-textarea validate" length="150" ngControl="returnDeal" materialize="characterCounter" required   #returnDeal="ngForm" aria-required="true" 
+                              [(ngModel)]="model.returnDeal"
+                              name="returnDeal"></textarea>
+                    <label [class.active]="isDelightful" for="icon_prefix2"  data-error="Please tell everyone what you expect in return" data-success="">What you expect in return</label>
+                    <div [hidden]="returnDeal.valid || returnDeal.pristine" class="error">
+                        Please tell everyone what you expect in return
+                    </div>
+                </div>
+                <div class="input-field">
+                    <select materialize="material_select" multiple id="New" >
+                        <option value="" selected disabled>Choose Categories for return products</option>
+                        <option *ngFor="let p of heroes" [value]="p.id">{{p.CategoryTitle}}</option>
+                    </select>
+                </div>
+             
+                 
+                        <br />
+                        <button class="btn waves-effect waves-light" id="pSubmit" [disabled]="!f.form.valid" type="submit">
+                            Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                 
+
+</form>
+         
+        </div>
+
+    <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+
+
+</div>

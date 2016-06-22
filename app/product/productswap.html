@@ -1,0 +1,61 @@
+﻿<div *ngIf="!payload" class="row">
+    <h5>You are not logged In , please click login at top to make an Offer</h5>
+    <button (click)="nlgi()" class="btn btn-info">Login</button>
+</div>
+<div *ngIf="!heroes || heroes.length == 0">
+    <h5>You dont have any products to crate cart, please add some product or service to your account.</h5>
+    <button (click)="redProd()" class="btn btn-info">Add Product</button>
+</div>
+    <div *ngIf="heroes && heroes.length > 0">
+        <div *ngIf="payload" class="row">
+            <h5>Your cart :  Total Worth {{cartitems.CartTotal}}</h5>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="cartitems.CartItems">
+                <tr *ngFor="let p of cartitems.CartItems">
+                    <td>{{p.cartProduct.ProductName}}</td>
+                    <td>{{p.cartProduct.ProductDescription}}</td>
+                    <td>{{p.count}} <a (click)="removefromcart(p.productId)" href="">remove</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea class="materialize-textarea validate" [(ngModel)]="orderMOdel.mesage"
+                              name="mesage" #mesage="ngForm"   ngControl="ngForm"></textarea>
+                    <div [hidden]="mesage.valid || mesage.pristine" class="error">
+                        Enter details about your offer in short.
+                    </div>
+                    <label for="icon_prefix2" data-error="wrong" data-success="">Enter Message</label>
+                </div>
+            </div>
+            <button type="submit" (click)="createOffer()" [disabled]="!cartitems.CartItems" class="waves-effect btn waves-light">Submit</button>
+        </div>
+
+
+        <h5>Add your products to Swapping cart</h5>
+        <ul class="collection">
+            <li *ngFor="let p of heroes" class="collection-item avatar">
+                <img *ngIf="p.picturefirst"
+                     class="circle" src="http://localhost:58056/wallimages/imagepath/thumb-{{p.picturefirst}}">
+                <img *ngIf="!p.picturefirst"
+                     class="circle" src="images/office.jpg">
+
+                <span class="title">{{p.ProductName}}</span>
+                <p>
+                    {{p.catName}} <br>
+                    {{p.AddDate}}
+                </p>
+                <p class="btn btn-primary secondary-content" (click)="addtokart(p.Id);" data-id="p.ProductId"> <i class="material-icons">shopping_cart</i>    Add to Cart  </p>
+
+            </li>
+        </ul>
+    </div>

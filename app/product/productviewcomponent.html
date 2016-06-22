@@ -1,0 +1,15 @@
+﻿
+<div class="row">
+    <img *ngFor="let pad of product.ProductPictures" materialize="materialbox" class="materialboxed responsive-img" style="margin:10px; float:left" src="http://localhost:58056/wallimages/imagepath/{{pad.pictureurl}}" width="150" />
+</div>
+<h3> {{product.ProductName}}</h3>
+
+<a *ngFor="let hero of product.Categories" class="breadcrumb">{{hero.CategoryTitle}}</a>
+
+<h6>{{product.ProductDescription}}</h6>
+
+    <h5>Expect in return :</h5>
+    <h6>{{product.returnDeal}}</h6>
+
+
+

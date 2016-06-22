@@ -1,0 +1,54 @@
+﻿<div class="loader" [hidden]="!isloading" style="text-align:center; padding-top:100px">
+    <div class="preloader-wrapper small active">
+        <div class="spinner-layer spinner-green-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle">
+                </div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div *ngFor="let p of heroes" class="col s12 m4 l3">
+
+
+     <div class="card ">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" alt="{{p.picturefirst}}" src="http://localhost:58056/wallimages/imagepath/thumb-{{p.picturefirst}}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{p.ProductName}}<i class="material-icons right">more_vert</i></span>
+              
+                <div>
+                    <div *ngFor="let hero of p.Categories" class="chip">
+                        {{hero.CategoryTitle}}
+                    </div>
+                </div>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                <p>{{p.ProductDescription}}</p>
+                <h6>{{p.returnDeal}}</h6>
+            </div>
+            <div class="card-action">
+                <a materialize="leanModal" [materializeParams]="[{dismissible: true}]" (click)="swap(p)" class="waves-effect waves-light btn modal-trigger" href="#modal1">Show Details</a>
+                <a (click)="edit(p)" class="btn btn-flat">edit</a>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+<div id="modal1" style="min-height:100%" class="modal bottom-sheet">
+
+    <router-outlet></router-outlet>
+
+ 
+</div>

@@ -1,0 +1,22 @@
+﻿<ul class="collection">
+        <li class="collection-item dismissable" *ngFor="let p of Listmessage">
+            <div>
+                {{p.message}}
+                <span class="secondary-content"> By - {{p.ApplicationUserId}} , {{p.AddDate}}</span>
+            </div>
+        </li>
+
+    <li class="collection-item dismissable">
+        <div>
+            <div class="input-field col s12">
+                <textarea class="materialize-textarea validate" [(ngModel)]="Message"
+                          name="Message"></textarea>
+                <label for="icon_prefix2" data-error="wrong" data-success="">Enter your message</label>
+            </div>
+
+            <input type="hidden" class="hidden" [(ngModel)]="Messageid"
+                   name="Messageid">
+            <button type="submit" (click)="sendMessage(Message,Messageid)" class="waves-effect btn waves-light">Submit</button>
+        </div>
+    </li>
+</ul>

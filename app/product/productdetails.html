@@ -1,0 +1,33 @@
+﻿<div class="modal-content">
+    <h4>{{pad.ProductName}}</h4><a onClick="$('#modal1').closeModal();" class="modal-action modal-close">Close X</a>
+
+</div>
+<div class="row">
+    <div class="col s12 m4 l4">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img *ngIf="pad.picturefirst"
+                     class="activator" src="http://localhost:58056/wallimages/imagepath/thumb-{{pad.picturefirst}}">
+                <img *ngIf="!pad.picturefirst"
+                     class="activator" src="images/office.jpg">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{pad.ProductDescription}}</span>
+                  <div>
+                    <div *ngFor="let hero of pad.Categories" class="chip">
+                        {{hero.CategoryTitle}}
+                    </div>
+                </div>
+            </div>
+            <div class="card-action">
+                <button class="waves-effect btn  btn-default" (click)="details()">Details</button>
+                <button class="waves-effect btn btn-default" (click)="swap(pad.id)">Swap / Buy</button>
+                <button class="waves-effect btn btn-default"  (click)="offer()">Offers</button>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m8 l8">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

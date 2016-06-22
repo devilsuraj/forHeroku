@@ -1,0 +1,105 @@
+﻿    <div class="col s12">
+        <ul materialize="tabs" class="tabs">
+            <li class="tab col s3"><a href="#test1">All Offers</a></li>
+            <li class="tab col s3"><a class="active" href="#test2">My Offers</a></li>
+         
+        </ul>
+    </div>
+
+    <div id="test1" class="col s12">
+        <ul class="collapsible popout">
+            <li *ngFor="let poo of pad ">
+                <div deact class="collapsible-header " [id]="poo.OfferId">
+                    <i class="material-icons">filter_drama</i>
+                    Offer from {{poo.ApplicationUserId}} , Approximate Value : {{poo.cartTotal}}
+                    <h6>posted on {{poo.OrderDate }}</h6>
+                    <p>{{poo.Message}} {{uiState}}</p>
+                </div>
+                <div class="collapsible-body">
+
+                    <div class="row">
+                        <div *ngFor="let p of poo.CartItems" class="col s4">
+                            <div class="card ">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" alt="{{p.picturefirst}}" src="http://localhost:58056/wallimages/imagepath/thumb-{{p.picturefirst}}">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4"> {{p.ProductName | truncate : 20}} </span>
+                                    <h6>{{p.ProductDescription}}</h6>
+                                    <h6>Expects : {{p.returnDeal}}</h6>
+                                    <h6>Quanity : {{p.Quantity}}</h6>
+                                    <div>
+                                        <div *ngFor="let hero of p.Categories" class="chip">
+                                            {{hero.CategoryTitle}}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <lol class="collection"
+                         [Listmessage]="poo.Listmessage"
+                         [Messageid]="poo.MessageId">
+
+                    </lol>
+
+                </div>
+            </li>
+
+
+        </ul>
+   </div>
+    <div id="test2" class="col s12">
+        <ul class="collapsible popout">
+            <li  *ngFor="let poo of pad ">
+                <div *ngIf="poo.ApplicationUserId==token.username">
+
+                    <div deact class="collapsible-header " [id]="poo.OfferId">
+                        <i class="material-icons">filter_drama</i>
+                        Offer from {{poo.ApplicationUserId}} , Approximate Value : {{poo.cartTotal}}
+                        <h6>posted on {{poo.OrderDate }}</h6>
+                        <p>{{poo.Message}} {{uiState}}</p>
+                    </div>
+                    <div class="collapsible-body">
+
+                        <div class="row">
+                            <div *ngFor="let p of poo.CartItems" class="col s4">
+                                <div class="card ">
+                                    <div class="card-image waves-effect waves-block waves-light">
+                                        <img class="activator" alt="{{p.picturefirst}}" src="http://localhost:58056/wallimages/imagepath/thumb-{{p.picturefirst}}">
+                                    </div>
+                                    <div class="card-content">
+                                        <span class="card-title activator grey-text text-darken-4"> {{p.ProductName | truncate : 20}} </span>
+                                        <h6>{{p.ProductDescription}}</h6>
+                                        <h6>Expects : {{p.returnDeal}}</h6>
+                                        <h6>Quanity : {{p.Quantity}}</h6>
+                                        <div>
+                                            <div *ngFor="let hero of p.Categories" class="chip">
+                                                {{hero.CategoryTitle}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <lol class="collection"
+                             [Listmessage]="poo.Listmessage"
+                             [Messageid]="poo.MessageId">
+
+                        </lol>
+
+                    </div>
+                </div>
+
+            </li>
+
+
+        </ul>
+
+    </div>
+
+
